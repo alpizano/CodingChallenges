@@ -1,0 +1,16 @@
+REST Apis
+Threading
+Async vs Sync
+Abstract class vs Interface
+Overriding and Overloading
+Polymorphism
+What does final do/mean
+Static
+Explain collections class
+Explain Serialization
+Restrictions of final method A: can't be overriden
+Restrictions of final variable
+Restriction of final class? A: can't be extended
+Can static method be overriden
+Why use interface over abstract class?
+Multiple inheritance in Java?
