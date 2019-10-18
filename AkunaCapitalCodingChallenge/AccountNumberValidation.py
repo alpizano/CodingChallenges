@@ -70,10 +70,15 @@ def process(line: str) -> str:
         print(new_sum)
 
     print(new_hex)
-    return hex
+
+    if(new_hex == check_sum):
+        return 'VALID'
+    else:
+        return 'INVALID'
 
 def main():
-    print(process("BADF00D5"))
+    #print(process("BADF00D5"))
+     print(process("1CC0FFEE"))
 
 
 if __name__ == '__main__':
