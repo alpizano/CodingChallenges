@@ -76,10 +76,12 @@ def process(line: str) -> str:
     else:
         return 'INVALID'
 
-def main():
-    #print(process("BADF00D5"))
-     print(process("1CC0FFEE"))
+print(process("1CC0FFEE"))
+
+#def main():
+#    #print(process("BADF00D5"))
+#    print(process("1CC0FFEE"))
 
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()
