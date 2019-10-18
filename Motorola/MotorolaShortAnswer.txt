@@ -1,12 +1,15 @@
-REST Apis
+Java:
+REST APIs
 Threading
+Give example of threading
 Async vs Sync
 Abstract class vs Interface
+Inheritance
 Overriding and Overloading
 Polymorphism
-What does final do/mean
+What does Final do/mean
 Static
-Explain collections class
+Explain collections interface
 Explain Serialization
 Restrictions of final method A: can't be overriden
 Restrictions of final variable
@@ -14,3 +17,11 @@ Restriction of final class? A: can't be extended
 Can static method be overriden
 Why use interface over abstract class?
 Multiple inheritance in Java?
+Name design frameworks? MVC etc...
+
+Python:
+What is tuple?
+Negative indices?
+What is declarator?
+What is generator?
+
