@@ -8,18 +8,11 @@ def process(line: str) -> str:
     tmp_str = ""
 
     # extract hex string
-    #for elem in line[2:len(line):1]:
-     #   hex = elem + hex
-
-    # extract hex string
     for i in range(len(line)):
         if i < 2:
             check_sum = check_sum + line[i]
         elif i >= 2:
             hex =  line[i] + hex
-
-    print(check_sum)
-    print(hex)
 
     # calc hex to decimal number
     for i in range(len(hex)):
@@ -39,15 +32,11 @@ def process(line: str) -> str:
             value = int(hex[i])
         sum = sum + value*16**i
 
-    print(sum)
-
     # split decimal number
     list = str(sum).split()
 
     for val in str(sum):
         new_sum = new_sum + int(val)
-
-    print(new_sum)
 
     while(new_sum > 0):
         tmp_int = (new_sum % 16)
@@ -67,19 +56,18 @@ def process(line: str) -> str:
             tmp_str = str(tmp_int)
         new_hex = tmp_str + new_hex
         new_sum = int(new_sum / 16)
-        print(new_sum)
 
-    print(new_hex)
 
     if(new_hex == check_sum):
         return 'VALID'
     else:
         return 'INVALID'
 
+print(process("BADF00D5"))
 print(process("1CC0FFEE"))
 
 #def main():
-#    #print(process("BADF00D5"))
+#    print(process("BADF00D5"))
 #    print(process("1CC0FFEE"))
 
 
