@@ -33,8 +33,6 @@ class DestinationCalculator:
             return ':'.join(line)
 
 
-
-
 x = DestinationCalculator()
 print(x.process("LOC:CHI:41.836944:-87.684722"))
 print(x.process("LOC:NYC:40.7127:-74.0059"))
