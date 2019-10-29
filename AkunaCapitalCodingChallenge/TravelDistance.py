@@ -34,8 +34,8 @@ class DestinationCalculator:
 
 
 x = DestinationCalculator()
-print(x.process("LOC:CHI:41.836944:-87.684722"))
-print(x.process("LOC:NYC:40.7127:-74.0059"))
+x.process("LOC:CHI:41.836944:-87.684722")
+x.process("LOC:NYC:40.7127:-74.0059")
 print(x.process("TRIP:C0FFEE1C:CHI:NYC"))
 
 #print(x.p1)
