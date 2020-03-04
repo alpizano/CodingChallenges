@@ -15,24 +15,22 @@ public class SuperStack {
                 System.out.println("Stack is EMPTY");
             }
 
-
             ArrayList<Integer> pseudoStack = new ArrayList<>();
             int lastIndex = 0;
+            
             for (int i=0; i< operations.length; i++) {
                 String operation = "";
                 int val1 = 0;
                 int val2 = 0;
 
-
                 operation = operations[i].split(" ")[0];
 
-
-                if (operations[i].split(" ").length > 1 && operations[i].split(" ").length < 3) {
+                if (operations[i].split(" ").length > 1 && operations[i].split(" ").length <= 2) {
                     val1 = Integer.parseInt(operations[i].split(" ")[1]);
                     System.out.println("operation is: " + operation);
                     System.out.println("val is: " + val1);
                 }
-                if (operations[i].split(" ").length > 2) {
+                if (operations[i].split(" ").length >= 3) {
                     val2 = Integer.parseInt(operations[i].split(" ")[2]);
                 }
 
@@ -40,10 +38,18 @@ public class SuperStack {
                     case "PUSH":
                         pseudoStack.add(val1);
                         lastIndex++;
-                        System.out.println(lastIndex-1);
+                        System.out.println("TOP of stack: " + pseudoStack.get(lastIndex-1));
                         break;
-//                    case "POP": pseudoStack.remove();
-//                                break;
+                    case "POP":
+                        pseudoStack.remove(lastIndex-1);
+                        lastIndex--;
+                        if(pseudoStack.size() == 0) {
+                            System.out.println("Stack is EMPTY");
+                        }
+                        else {
+                            System.out.println("TOP of stack: " + pseudoStack.get(lastIndex - 1));
+                        }
+                        break;
 //                    case "INC": pseudoStack();
 
                 }
