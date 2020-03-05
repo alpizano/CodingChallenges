@@ -12,7 +12,7 @@ public class SuperStack {
     static void superStack(String[] operations) {
             // User enters 0 operations
             if (operations.length == 0) {
-                System.out.println("Stack is EMPTY");
+                System.out.println("You entered 0 operations so there's nothing to do");
             }
 
             ArrayList<Integer> pseudoStack = new ArrayList<>();
@@ -41,16 +41,17 @@ public class SuperStack {
                         System.out.println("TOP of stack: " + pseudoStack.get(lastIndex-1));
                         break;
                     case "POP":
-                        pseudoStack.remove(lastIndex-1);
-                        lastIndex--;
+                        // stack is empty
                         if(pseudoStack.size() == 0) {
                             System.out.println("Stack is EMPTY");
                         }
                         else {
+                            pseudoStack.remove(lastIndex-1);
+                            lastIndex--;
                             System.out.println("TOP of stack: " + pseudoStack.get(lastIndex - 1));
                         }
                         break;
-//                    case "INC": pseudoStack();
+                    //case "INC": pseudoStack();
 
                 }
             }
