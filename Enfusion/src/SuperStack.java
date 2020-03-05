@@ -17,7 +17,7 @@ public class SuperStack {
 
             ArrayList<Integer> pseudoStack = new ArrayList<>();
             int lastIndex = 0;
-            
+
             for (int i=0; i< operations.length; i++) {
                 String operation = "";
                 int val1 = 0;
