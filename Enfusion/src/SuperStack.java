@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+// This is my superstack code
 public class SuperStack {
 
     enum Ops {
