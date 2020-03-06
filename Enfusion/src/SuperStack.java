@@ -17,42 +17,51 @@ public class SuperStack {
             }
 
             ArrayList<Integer> pseudoStack = new ArrayList<>();
-            int lastIndex = 0;
+            int head = 0;
+            int tail = 0;
 
-            for (int i=0; i< operations.length; i++) {
+            for (int k=0; k < operations.length; k++) {
                 String operation = "";
-                int val1 = 0;
-                int val2 = 0;
+                int v = 0;
+                int i = 0;
 
-                operation = operations[i].split(" ")[0];
+                operation = operations[k].split(" ")[0];
 
-                if (operations[i].split(" ").length > 1 && operations[i].split(" ").length <= 2) {
-                    val1 = Integer.parseInt(operations[i].split(" ")[1]);
+                if (operations[k].split(" ").length > 1 && operations[k].split(" ").length <= 2) {
+                    v = Integer.parseInt(operations[k].split(" ")[1]);
                     System.out.println("operation is: " + operation);
-                    System.out.println("val is: " + val1);
+                    System.out.println("val is: " + v);
                 }
-                if (operations[i].split(" ").length >= 3) {
-                    val2 = Integer.parseInt(operations[i].split(" ")[2]);
+                if (operations[k].split(" ").length >= 3) {
+                    i = Integer.parseInt(operations[k].split(" ")[2]);
                 }
 
                 switch(operation.toUpperCase()) {
                     case "PUSH":
-                        pseudoStack.add(val1);
-                        lastIndex++;
-                        System.out.println("TOP of stack: " + pseudoStack.get(lastIndex-1));
+                        pseudoStack.add(v);
+                        tail++;
+                        // print top of stack
+                        System.out.println(pseudoStack.get(tail-1));
                         break;
                     case "POP":
                         // stack is empty
                         if(pseudoStack.size() == 0) {
-                            System.out.println("Stack is EMPTY");
+                            System.out.println("EMPTY");
                         }
                         else {
-                            pseudoStack.remove(lastIndex-1);
-                            lastIndex--;
-                            System.out.println("TOP of stack: " + pseudoStack.get(lastIndex - 1));
+                            pseudoStack.remove(tail-1);
+                            tail--;
+                            // print top of stack
+                            System.out.println(pseudoStack.get(tail - 1));
                         }
                         break;
-                    //case "INC": pseudoStack();
+                    case "INC":
+                        while(head < i) {
+                            pseudoStack.set(head, v);
+                            head++;
+                        }
+                        
+
 
                 }
             }
