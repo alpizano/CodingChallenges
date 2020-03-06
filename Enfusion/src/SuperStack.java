@@ -29,8 +29,8 @@ public class SuperStack {
 
                 if (operations[k].split(" ").length > 1 && operations[k].split(" ").length <= 2) {
                     v = Integer.parseInt(operations[k].split(" ")[1]);
-                    System.out.println("operation is: " + operation);
-                    System.out.println("val is: " + v);
+                    //System.out.println("operation is: " + operation);
+                    //System.out.println("val is: " + v);
                 }
                 if (operations[k].split(" ").length >= 3) {
                     i = Integer.parseInt(operations[k].split(" ")[2]);
@@ -44,16 +44,16 @@ public class SuperStack {
                         System.out.println(pseudoStack.get(tail-1));
                         break;
                     case "POP":
-                        // stack is empty
-                        if(pseudoStack.size() == 0) {
-                            System.out.println("EMPTY");
-                        }
-                        else {
+                        // constraint: pop never called on empty stack
                             pseudoStack.remove(tail-1);
                             tail--;
                             // print top of stack
-                            System.out.println(pseudoStack.get(tail - 1));
-                        }
+                            if(pseudoStack.size() != 0) {
+                                System.out.println(pseudoStack.get(tail - 1));
+                            }
+                            else {
+                                System.out.println("EMPTY");
+                            }
                         break;
                     case "INC":
                         while(head < i) {
@@ -68,6 +68,8 @@ public class SuperStack {
     }
 
     public static void main (String[] args) {
+
+
         Scanner in = new Scanner (System.in);
        int operations_size = 0;
 
