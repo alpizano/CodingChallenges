@@ -11,8 +11,11 @@ public class SubstringCalculator {
         String memory = "";
 
         for(int i=0; i<s.length(); i++) {
-            if (!memory.contains(Character.toString(s.charAt(ptr1)))) {
-                uniqueCount++;
+
+            if (!table.contains(Character.toString(s.charAt(i)))) {
+
+            table.put(Character.toString(s.charAt(ptr1)),1);
+
             }
         }
 
