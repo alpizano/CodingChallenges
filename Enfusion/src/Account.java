@@ -1,29 +1,27 @@
 public class Account {
-    int balance;
+    private int balance;
 
     public Account() {
         balance = 0;
     }
 
-    public String deposit(int money) {
+    String deposit(int money) {
         return "Despositing " + money;
     }
 
-    public String withdraw(int money) {
+    String withdraw(int money) {
         int newBalance = money - balance;
 
-        if(newBalance > 0) {
+        if (newBalance > 0) {
             balance = balance - money;
             return "Withdrawing " + money;
 
-        }
-        else {
+        } else {
             return "Withdrawing " + money + " (Insufficient Balance)";
         }
     }
 
-
-    public int getBalance() {
+    int getBalance() {
         return balance;
     }
 }
