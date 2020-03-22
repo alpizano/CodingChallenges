@@ -6,7 +6,7 @@ public class Account {
     }
 
     String deposit(int money) {
-        return "Despositing " + money;
+        return "Despositing $" + money;
     }
 
     String withdraw(int money) {
@@ -14,10 +14,10 @@ public class Account {
 
         if (newBalance > 0) {
             balance = balance - money;
-            return "Withdrawing " + money;
+            return "Withdrawing $" + money;
 
         } else {
-            return "Withdrawing " + money + " (Insufficient Balance)";
+            return "Withdrawing $" + money + " (Insufficient Balance)";
         }
     }
 
