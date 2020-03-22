@@ -5,9 +5,9 @@ public class Transaction {
     private Account account;
     private List<String> transactions;
 
-    public Transaction() {
-        account = new Account();
-        transactions = new ArrayList<>();
+    public Transaction(Account account) {
+    this.account = account;
+    transactions = new ArrayList<>();
     }
 
     void deposit(int money) {
