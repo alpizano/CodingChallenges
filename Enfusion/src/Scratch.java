@@ -29,6 +29,7 @@ public class Scratch {
         System.out.println(strList);
         System.out.println(strList.equals(strList2));
 
+        // ignores order of list
         System.out.println(strList.containsAll(strList2));
 
         table.put(strList,1);
@@ -36,9 +37,13 @@ public class Scratch {
        // table.put(strList2,1);
 
         System.out.println("Checking if table contains list (irrelevant order):");
+        // see if Hashtable contains ("B", "A")
         System.out.println(table.contains(strList2));
         System.out.println(table.contains(control));
-        System.out.println(table.containsKey(strList));
+        // Seeing if Hashtable contains [A,B] list, which it does
+        System.out.println(table.containsKey(control));
+        // Seeing if Hashtable contains [B,A] list, which is doesn't , but we want it to ignore order
+        System.out.println(table.containsKey(strList2));
 
     }
 }
