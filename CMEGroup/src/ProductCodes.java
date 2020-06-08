@@ -5,8 +5,6 @@ public class ProductCodes {
     public static void productMatcher(String s) {
        //final Pattern pattern = Pattern.compile("^([a-zA-Z0-9+]{1,3})([a-z])([0-9]{1,2}|[0-9]{4})");
        final Pattern pattern = Pattern.compile("([a-zA-Z0-9]{1,3})([a-zA-Z])([0-9]{1,2}|[0-9]{4})");
-
-
         Matcher matcher = pattern.matcher(s);
 
         if(matcher.find()) {
@@ -27,9 +25,5 @@ public class ProductCodes {
         ProductCodes.productMatcher(test1);
         ProductCodes.productMatcher(test2);
         ProductCodes.productMatcher(test3);
-
-
-
-
     }
 }
