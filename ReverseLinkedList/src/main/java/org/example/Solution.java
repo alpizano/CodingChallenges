@@ -4,7 +4,16 @@ package org.example;
 public class Solution
 {
     public static LinkedList reverseLinkedList(LinkedList head) {
-        return null;
+        LinkedList helper = head;
+        LinkedList node;
+
+        for(LinkedList cursor = head; cursor != null; cursor=cursor.next) {
+            node = new LinkedList(cursor.value);
+            node = helper;
+            helper = node;
+        }
+
+        return helper;
     }
 
     static class LinkedList {
