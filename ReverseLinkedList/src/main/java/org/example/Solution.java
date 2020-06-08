@@ -18,6 +18,18 @@ public class Solution
     }
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        LinkedList myList = new LinkedList(0);
+        myList.next = new LinkedList(1);
+        myList.next.next = new LinkedList(2);
+        myList.next.next.next = new LinkedList(3);
+        myList.next.next.next.next = new LinkedList(4);
+        myList.next.next.next.next.next = new LinkedList(5);
+
+        for(LinkedList cursor = myList; cursor != null; cursor=cursor.next) {
+            System.out.print(cursor.value + " ");
+        }
+
+
+
     }
 }
