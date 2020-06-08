@@ -2,7 +2,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Solution1 {
+public class Permutations {
     public static void main(String[] args) {
         Set<Character> set = new HashSet<>();
         Set<Character> set2 = new HashSet<>();
