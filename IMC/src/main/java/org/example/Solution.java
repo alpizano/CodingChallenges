@@ -11,14 +11,7 @@ import java.util.Map;
  */
 public class Solution
 {
-    public int[] solution(int N, String artifacts, String searched) {
-        return null;
-    }
-
-    public static void main( String[] args )
-    {
-        int N = 5;
-        String artifacts = "1B 2C,2D 4D";
+    public static int[] getArtifacts(int N, String artifacts, String searched) {
 
         // Split the Artifacts String into an String[] on comma
         String[] strArray = artifacts.split(",");
@@ -29,10 +22,10 @@ public class Solution
         Map<Integer, String> map = new HashMap<>();
 
         int artifactKey = 1;
-       for(String val: strArray) {
-           map.put(artifactKey, val);
+        for(String val: strArray) {
+            map.put(artifactKey, val);
             artifactKey++;
-       }
+        }
 
         System.out.println(map.get(2));
 
@@ -44,6 +37,17 @@ public class Solution
             System.out.println();
         }
 
-        int[][] underground = new int[][]
+        // Initialize underground map to NxN matrix
+        int[][] underground = new int[N][N];
+
+        return null;
+    }
+
+    public static void main( String[] args )
+    {
+        String artifacts = "1B 2C,2D 4D";
+
+        Solution.getArtifacts(5, "1B 2C,2D 4D", "2B 2D 3D 4D 4A");
+
     }
 }
