@@ -5,38 +5,27 @@ import java.util.List;
 public class SummaryRanges {
     public List<String> summaryRanges(int[] nums) {
         List<String> strList = new ArrayList<>();
+        List<Integer> container = new ArrayList<>();
 
-        // if nums length is 0, return empty List
-        if (nums.length == 0) {
-            return new ArrayList();
-        }
-        // if nums length is 1, return same List back but as string
-        else if (nums.length == 1) {
-            strList.add(String.valueOf(nums[0]));
-            return strList;
-        } else {
-            List<Integer> container = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (i + 1 < nums.length && nums[i] + 1 == nums[i + 1]) {
+                container.add(nums[i]);
+                // container.add(nums[i+1]);
+            } else {
+                container.add(nums[i]);
+                String start = String.valueOf(container.get(0));
+                String end = String.valueOf(container.get(container.size() - 1));
+                if (!start.equals(end)) {
+                    strList.add(start + "->" + end);
 
-            for (int i = 0; i < nums.length; i++) {
-                if (i + 1 < nums.length && nums[i] + 1 == nums[i + 1]) {
-                    container.add(nums[i]);
-                    // container.add(nums[i+1]);
                 } else {
-                    container.add(nums[i]);
-                    String start = String.valueOf(container.get(0));
-                    String end = String.valueOf(container.get(container.size() - 1));
-                    if (!start.equals(end)) {
-                        strList.add(start + "->" + end);
-
-                    } else {
-                        strList.add(start);
-                    }
-                    container.clear();
-                    // strList.add(String.valueOf(nums[i]));
+                    strList.add(start);
                 }
+                container.clear();
+                // strList.add(String.valueOf(nums[i]));
             }
-
         }
+
 
         return strList;
 
