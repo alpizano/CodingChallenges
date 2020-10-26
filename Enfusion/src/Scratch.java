@@ -33,13 +33,24 @@ public class Scratch {
         testSort.add("B");
         testSort.add("A");
 
+
+        // ignores order of list
+        System.out.println(strList.containsAll(strList2));
         String str_control = "A";
         String str_same = "A";
         String str_diff = "AB";
         String str_diff_rev = "BA";
         String str_diff_rev2 = "BA";
 
-
+        System.out.println("Checking if table contains list (irrelevant order):");
+        // see if Hashtable contains ("B", "A")
+        System.out.println(table.contains(strList2));
+        System.out.println(table.contains(control));
+        // Seeing if Hashtable contains [A,B] list, which it does
+        System.out.println(table.containsKey(control));
+        // Seeing if Hashtable contains [B,A] list, which is doesn't , but we want it to ignore order
+        System.out.println(table.containsKey(strList2));
+=======
         Hashtable<String, Integer> test_table = new Hashtable<>();
 
         test_table.put(str_control,1);
@@ -110,6 +121,7 @@ public class Scratch {
 //        Collections.sort(testSort);
 //
 //        System.out.println(testSort);
+>>>>>>> e12ee392db0ec26b67d7cd260f78b2fd6d87768a
 
     }
 }
