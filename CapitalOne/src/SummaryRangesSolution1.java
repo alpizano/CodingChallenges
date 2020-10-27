@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeetCodeSolution1 {
+public class SummaryRangesSolution1 {
 
     public List<String> summaryRanges(int[] nums) {
         List<String> summary = new ArrayList<>();
@@ -20,7 +20,7 @@ public class LeetCodeSolution1 {
     }
 
     public static void main(String[] args) {
-        LeetCodeSolution1 test = new LeetCodeSolution1();
+        SummaryRangesSolution1 test = new SummaryRangesSolution1();
         System.out.println(test.summaryRanges(new int[]{0, 1, 2, 4, 5, 7}));
     }
 }
