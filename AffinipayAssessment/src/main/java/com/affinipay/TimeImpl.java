@@ -53,18 +53,21 @@ public class TimeImpl implements ITime {
         // Sum input minutes and minutesToAdd
         totalMinutes = timeInputAsMinutes + minutesToAdd;
 
-        int answerHours = convertMinutesToHours(Math.floorMod(totalMinutes, 24 * 60));
-        int answerMinutes = Math.floorMod(totalMinutes, 60);
+        int calculatedHours = convertMinutesToHours(Math.floorMod(totalMinutes, 24 * 60));
+        int calculatedMinutes = Math.floorMod(totalMinutes, 60);
 
         // Calculate time state
-        if (answerHours >= 0 && answerHours < 12) {
+        if (calculatedHours >= 0 && calculatedHours < 12) {
             state = State.AM;
-        } else if (answerHours >= 12 && answerHours <= 23) {
+        } else if (calculatedHours >= 12 && calculatedHours <= 23) {
             state = State.PM;
         }
 
+        // Map back to 12-hour clock after calculations are complete
+        String hoursTo12HourClock = mapTo12HourClock(String.valueOf(calculatedHours));
+
         // Build return string
-        return String.format("%d:%s %s", mapTo12HourClock(answerHours), padMinutes(answerMinutes), state);
+        return String.format("%s:%s %s", hoursTo12HourClock, padMinutes(calculatedMinutes), state);
     }
 
     /**
@@ -163,43 +166,43 @@ public class TimeImpl implements ITime {
      * @param hours hours in 24-hour clock format
      * @return hours mapped to 12-hour clock format
      */
-    public static int mapTo12HourClock(int hours) {
+    public static String mapTo12HourClock(String hours) {
         switch (hours) {
-            case 0:
-                hours = 12;
+            case "0":
+                hours = "12";
                 break;
-            case 13:
-                hours = 1;
+            case "13":
+                hours = "1";
                 break;
-            case 14:
-                hours = 2;
+            case "14":
+                hours = "2";
                 break;
-            case 15:
-                hours = 3;
+            case "15":
+                hours = "3";
                 break;
-            case 16:
-                hours = 4;
+            case "16":
+                hours = "4";
                 break;
-            case 17:
-                hours = 5;
+            case "17":
+                hours = "5";
                 break;
-            case 18:
-                hours = 6;
+            case "18":
+                hours = "6";
                 break;
-            case 19:
-                hours = 7;
+            case "19":
+                hours = "7";
                 break;
-            case 20:
-                hours = 8;
+            case "20":
+                hours = "8";
                 break;
-            case 21:
-                hours = 9;
+            case "21":
+                hours = "9";
                 break;
-            case 22:
-                hours = 10;
+            case "22":
+                hours = "10";
                 break;
-            case 23:
-                hours = 11;
+            case "23":
+                hours = "11";
                 break;
         }
 
@@ -215,44 +218,44 @@ public class TimeImpl implements ITime {
      */
     public String mapTo24HourClock(String hours, State state) {
         if (state == State.AM) {
-            switch (Integer.parseInt(hours)) {
-                case 12:
+            switch (hours) {
+                case "12":
                     hours = "0";
                     break;
             }
         } else if (state == State.PM) {
-            switch (Integer.parseInt(hours)) {
-                case 1:
+            switch (hours) {
+                case "1":
                     hours = "13";
                     break;
-                case 2:
+                case "2":
                     hours = "14";
                     break;
-                case 3:
+                case "3":
                     hours = "15";
                     break;
-                case 4:
+                case "4":
                     hours = "16";
                     break;
-                case 5:
+                case "5":
                     hours = "17";
                     break;
-                case 6:
+                case "6":
                     hours = "18";
                     break;
-                case 7:
+                case "7":
                     hours = "19";
                     break;
-                case 8:
+                case "8":
                     hours = "20";
                     break;
-                case 9:
+                case "9":
                     hours = "21";
                     break;
-                case 10:
+                case "10":
                     hours = "22";
                     break;
-                case 11:
+                case "11":
                     hours = "23";
                     break;
             }
