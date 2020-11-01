@@ -2,7 +2,7 @@ package com.affinipay;
 
 import org.junit.Test;
 
-public class TimeTest {
+public class TimeImplTest {
 
     @Test
     public void sampleTest() {

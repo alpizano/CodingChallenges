@@ -1,11 +1,12 @@
 package com.affinipay;
 
-public class Time implements ITime {
+public class TimeImpl implements ITime {
 
     enum Abbrev {
         AM,
         PM
     }
+
     @Override
     public String addMinutes(String time, int minutesToAdd) {
         Abbrev abbrev = null;
@@ -16,7 +17,8 @@ public class Time implements ITime {
 //        System.out.println("adding INPUT + ADDED, convert minutesToAdd: " + (Integer.parseInt(timeElementsArray[0])*60 + Integer.parseInt(timeElementsArray[1]) + minutesToAdd));
 
         // Do calculations in 24 hour clock. Map back to 12 hour clock for output
-        int timeInputAsMinutes = convert12HourInputTimeToMinutes(timeElementsArray[0], timeElementsArray[1], timeElementsArray[2]);
+        String hoursTo24HourClock = mapTo24HourClock(timeElementsArray[0],timeElementsArray[2]);
+        int timeInputAsMinutes = convert12HourInputTimeToMinutes(hoursTo24HourClock, timeElementsArray[1]);
 
         // How do we know when to add vs substract?
         int totalMinutes = timeInputAsMinutes + minutesToAdd;
@@ -31,16 +33,7 @@ public class Time implements ITime {
 //        System.out.println("answer (total hours) + " + (totalMinutes/60));
         System.out.println("(24hr clock) Remainder of minutes: " + (totalMinutes%60));
 
-//        int addedHours = minutesToAdd / 60;
-//        int addedMinutes = minutesToAdd % 60;
-//
-//        System.out.println("Added hours are: " +addedHours);
-//        System.out.println("Added minutesToAdd are: " + addedMinutes);
 
-//        int totalHours = Integer.parseInt(timeElementsArray[0]) + addedHours;
-//        int totalMinutes = Integer.parseInt(timeElementsArray[1]) + addedMinutes;
-//        System.out.println("total hours are: " +totalHours);
-//        System.out.println("total minutesToAdd are: " + totalMinutes);
 
 //        System.out.println();
 //        // Get days
@@ -73,7 +66,7 @@ public class Time implements ITime {
         return new String[]{splitOnColon[0],splitOnColon[1],splitOnWhitespace[1]};
     }
 
-    public static int mapTo24HourClock(String hours, String abbrev) {
+    public static String mapTo24HourClock(String hours, String abbrev) {
         if(abbrev.equals(Abbrev.AM.toString())) {
             switch(Integer.parseInt(hours)) {
                 case 12: hours = "0";
@@ -107,7 +100,7 @@ public class Time implements ITime {
             }
         }
 
-        return Integer.parseInt(hours);
+        return hours;
     }
 
     public static String padMinutes(int minutes) {
@@ -137,8 +130,10 @@ public class Time implements ITime {
         return minutes/60;
     }
 
-    public static int convert12HourInputTimeToMinutes(String hours, String minutes, String abbrev) {
-        return (convertHoursToMinutes(mapTo24HourClock(hours,abbrev)) + Integer.parseInt(minutes));
+    public static int convert12HourInputTimeToMinutes(String hours, String minutes) {
+//        return (convertHoursToMinutes(mapTo24HourClock(hours,abbrev)) + Integer.parseInt(minutes));
+         return (convertHoursToMinutes(Integer.parseInt(hours)) + Integer.parseInt(minutes));
+
     }
 
     public static int mapTo12HourClock(int hours) {
@@ -170,5 +165,9 @@ public class Time implements ITime {
         }
 
         return hours;
+    }
+
+    public static void main(String[] args) {
+        
     }
 }
