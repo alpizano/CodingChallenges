@@ -21,15 +21,8 @@ public class TimeImpl implements ITime {
     @Override
     public String addMinutes(String time, int minutesToAdd) throws InvalidTwelveHourTimeFormatException {
         String[] timeElementsArray = extractTimeElements(time);
-        State state = null;
 
-        try {
-            state = State.valueOf(timeElementsArray[2].toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new InvalidTwelveHourTimeFormatException("Input time: " + time + " state must be either AM or PM (" + timeElementsArray[2] + " is invalid)");
-        }
-
-        return calculate(timeElementsArray[0], timeElementsArray[1], state, minutesToAdd);
+        return calculate(timeElementsArray[0], timeElementsArray[1], State.valueOf(timeElementsArray[2]), minutesToAdd);
     }
 
     /**
@@ -78,16 +71,23 @@ public class TimeImpl implements ITime {
      */
     private String[] extractTimeElements(String time) throws InvalidTwelveHourTimeFormatException {
         time = time.trim();
+        State state = null;
         String[] splitOnWhitespace = time.split(" ");
         String[] splitOnColon = splitOnWhitespace[0].split(":");
 
         validateInput(splitOnWhitespace, splitOnColon);
 
-        return new String[]{splitOnColon[0], splitOnColon[1], splitOnWhitespace[1]};
+        try {
+            state = State.valueOf(splitOnWhitespace[1].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidTwelveHourTimeFormatException("Input time: " + time + " state must be either AM or PM (" + splitOnWhitespace[1] + " is invalid)");
+        }
+
+        return new String[]{splitOnColon[0], splitOnColon[1], state.toString()};
     }
 
     /**
-     * Validates time input
+     * Validates time input for hours, minutes and state in [H]H:MM {AM|PM} format
      *
      * @param splitOnWhiteSpace a string array containing time element and state element (AM or PM)
      * @param splitOnColon      a string array containing hours element and minutes element
@@ -119,7 +119,7 @@ public class TimeImpl implements ITime {
      * @param minutes the final calculated minutes to be padded and returned to user as string
      * @return padded string minutes with length 2
      */
-    public static String padMinutes(int minutes) {
+    private String padMinutes(int minutes) {
         String strMinutes = String.valueOf(minutes);
 
         if (strMinutes.length() == 1) {
@@ -135,7 +135,7 @@ public class TimeImpl implements ITime {
      * @param hours to be converted to minutes
      * @return integer representation of minutes
      */
-    public static int convertHoursToMinutes(int hours) {
+    private int convertHoursToMinutes(int hours) {
         return hours * 60;
     }
 
@@ -145,7 +145,7 @@ public class TimeImpl implements ITime {
      * @param minutes to be converted to hours
      * @return integer representation of hours
      */
-    public int convertMinutesToHours(int minutes) {
+    private int convertMinutesToHours(int minutes) {
         return minutes / 60;
     }
 
@@ -156,7 +156,7 @@ public class TimeImpl implements ITime {
      * @param minutes input time in minutes
      * @return the sum of input time converted to minutes
      */
-    public static int sumInputTimeToMinutes(String hours, String minutes) {
+    private int sumInputTimeToMinutes(String hours, String minutes) {
         return (convertHoursToMinutes(Integer.parseInt(hours)) + Integer.parseInt(minutes));
     }
 
@@ -166,7 +166,7 @@ public class TimeImpl implements ITime {
      * @param hours hours in 24-hour clock format
      * @return hours mapped to 12-hour clock format
      */
-    public static String mapTo12HourClock(String hours) {
+    private String mapTo12HourClock(String hours) {
         switch (hours) {
             case "0":
                 hours = "12";
@@ -216,7 +216,7 @@ public class TimeImpl implements ITime {
      * @param state AM or PM
      * @return string representation of hours mapped to 24-hour clock format
      */
-    public String mapTo24HourClock(String hours, State state) {
+    private String mapTo24HourClock(String hours, State state) {
         if (state == State.AM) {
             switch (hours) {
                 case "12":
