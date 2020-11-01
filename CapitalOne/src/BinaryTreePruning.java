@@ -10,7 +10,7 @@ public class BinaryTreePruning {
             root = null;
         }
 
-        return root;
+        return new TreeNode(55);
     }
 
     public TreeNode pruneTree(TreeNode root) {
