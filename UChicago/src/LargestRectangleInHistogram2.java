@@ -7,27 +7,27 @@ public class LargestRectangleInHistogram2 {
     List<Integer> maxAreaList;
 
     public int largestRectangleArea(int[] heights) {
-        maxAreaList = new ArrayList<>();
+        if(heights.length == 0) return 0;
 
+        maxAreaList = new ArrayList<>();
 
         for(int i=0; i<heights.length; i++) {
             minCol = heights[i];
             span = 1;
-            maxAreaList.add(span * minCol);
-
+            int maxArea = span * minCol;
 
             for(int j=i+1; j<heights.length; j++) {
                 span++;
                 if(heights[j] < minCol) {
                     minCol = heights[j];
                 }
-                if(maxAreaList.get(maxAreaList.size()-1) < span * minCol){
-                    maxAreaList.add(span * minCol);
+                if(maxArea < span * minCol){
+                    maxArea = span* minCol;
                 }
             }
-        }
+            maxAreaList.add(maxArea);
 
-        System.out.println(maxAreaList);
+        }
 
         return maxAreaList.stream().max( (x,y) -> Integer.compare(x,y)).get();
     }
