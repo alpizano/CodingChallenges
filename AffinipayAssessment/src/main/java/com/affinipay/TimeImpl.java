@@ -1,6 +1,6 @@
 package com.affinipay;
 
-import com.affinipay.exceptions.InvalidTwelveHourTimeFormatException;
+import com.affinipay.exceptions.InvalidTwelveHourClockTimeFormatException;
 
 public class TimeImpl implements ITime {
 
@@ -16,10 +16,10 @@ public class TimeImpl implements ITime {
      * @param time         input time in [H]H:MM {AM|PM} 12-hour clock format
      * @param minutesToAdd minutes to be added to input time. can be negative or positive integer
      * @return string representation of final calculated time
-     * @throws InvalidTwelveHourTimeFormatException if the time format does not match 12-hour clock [H]H:MM {AM|PM} format
+     * @throws InvalidTwelveHourClockTimeFormatException if the time format does not match 12-hour clock [H]H:MM {AM|PM} format
      */
     @Override
-    public String addMinutes(String time, int minutesToAdd) throws InvalidTwelveHourTimeFormatException {
+    public String addMinutes(String time, int minutesToAdd) throws InvalidTwelveHourClockTimeFormatException {
         String[] timeElementsArray = extractTimeElements(time);
 
         return calculate(timeElementsArray[0], timeElementsArray[1], State.valueOf(timeElementsArray[2]), minutesToAdd);
@@ -69,7 +69,7 @@ public class TimeImpl implements ITime {
      * @param time input time as string
      * @return a string array containing hours [0], minutes [1], and am/pm abbreviation [2], extracted from input string
      */
-    private String[] extractTimeElements(String time) throws InvalidTwelveHourTimeFormatException {
+    private String[] extractTimeElements(String time) throws InvalidTwelveHourClockTimeFormatException {
         time = time.trim();
         State state = null;
         String[] splitOnWhitespace = time.split(" ");
@@ -80,7 +80,7 @@ public class TimeImpl implements ITime {
         try {
             state = State.valueOf(splitOnWhitespace[1].toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new InvalidTwelveHourTimeFormatException("Input time: " + time + " state must be either AM or PM (" + splitOnWhitespace[1] + " is invalid)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input time: " + time + " state must be either AM or PM (" + splitOnWhitespace[1] + " is invalid)");
         }
 
         return new String[]{splitOnColon[0], splitOnColon[1], state.toString()};
@@ -91,25 +91,25 @@ public class TimeImpl implements ITime {
      *
      * @param splitOnWhiteSpace a string array containing time element and state element (AM or PM)
      * @param splitOnColon      a string array containing hours element and minutes element
-     * @throws InvalidTwelveHourTimeFormatException if the time format does not match 12-hour clock [H]H:MM {AM|PM} format
+     * @throws InvalidTwelveHourClockTimeFormatException if the time format does not match 12-hour clock [H]H:MM {AM|PM} format
      */
-    private void validateInput(String[] splitOnWhiteSpace, String[] splitOnColon) throws InvalidTwelveHourTimeFormatException {
+    private void validateInput(String[] splitOnWhiteSpace, String[] splitOnColon) throws InvalidTwelveHourClockTimeFormatException {
         if (splitOnWhiteSpace.length != 2 && splitOnColon.length == 2) {
-            throw new InvalidTwelveHourTimeFormatException("Input time: " + splitOnWhiteSpace[0] + " must be in format [H]H:MM {AM|PM} (missing whitespace)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input time: " + splitOnWhiteSpace[0] + " must be in format [H]H:MM {AM|PM} (missing whitespace)");
         } else if (splitOnColon.length != 2 && splitOnWhiteSpace.length == 2) {
-            throw new InvalidTwelveHourTimeFormatException("Input time: " + splitOnColon[0] + " must be in format [H]H:MM {AM|PM} (missing colon or minutes)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input time: " + splitOnColon[0] + " must be in format [H]H:MM {AM|PM} (missing colon or minutes)");
         } else if (splitOnColon.length != 2 && splitOnWhiteSpace.length != 2) {
-            throw new InvalidTwelveHourTimeFormatException("Input time: " + splitOnWhiteSpace[0] + " must be in format [H]H:MM {AM|PM} (missing whitespace and colon)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input time: " + splitOnWhiteSpace[0] + " must be in format [H]H:MM {AM|PM} (missing whitespace and colon)");
         } else if (!splitOnColon[0].matches("[0-9]+")) {
-            throw new InvalidTwelveHourTimeFormatException("Input hours: " + splitOnColon[0] + " contains invalid value(s) (can only contain digits)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input hours: " + splitOnColon[0] + " contains invalid value(s) (can only contain digits)");
         } else if (!splitOnColon[1].matches("[0-9]+")) {
-            throw new InvalidTwelveHourTimeFormatException("Input minutes: " + splitOnColon[1] + " contains invalid value(s) (can only contain digits)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input minutes: " + splitOnColon[1] + " contains invalid value(s) (can only contain digits)");
         } else if (Integer.parseInt(splitOnColon[0]) < 1 || Integer.parseInt(splitOnColon[0]) > 12) {
-            throw new InvalidTwelveHourTimeFormatException("Input hours: " + splitOnColon[0] + " must be in in 12-hour clock format (range 1-12)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input hours: " + splitOnColon[0] + " must be in in 12-hour clock format (range 1-12)");
         } else if (Integer.parseInt(splitOnColon[1]) < 0 || Integer.parseInt(splitOnColon[1]) >= 60) {
-            throw new InvalidTwelveHourTimeFormatException("Input minutes: " + splitOnColon[1] + " must be in 12-hour clock format (range 00-59)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input minutes: " + splitOnColon[1] + " must be in 12-hour clock format (range 00-59)");
         } else if (splitOnColon[1].length() != 2) {
-            throw new InvalidTwelveHourTimeFormatException("Input minutes: " + splitOnColon[1] + " must be in format [H]H:MM {AM|PM} (minimum length for minutes is 2 characters)");
+            throw new InvalidTwelveHourClockTimeFormatException("Input minutes: " + splitOnColon[1] + " must be in format [H]H:MM {AM|PM} (minimum length for minutes is 2 characters)");
         }
     }
 

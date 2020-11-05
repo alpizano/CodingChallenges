@@ -1,7 +1,7 @@
 package com.affinipay;
 
-import com.affinipay.exceptions.InvalidTwelveHourTimeFormatException;
+import com.affinipay.exceptions.InvalidTwelveHourClockTimeFormatException;
 
 public interface ITime {
-    String addMinutes(String time, int minutesToAdd) throws InvalidTwelveHourTimeFormatException;
+    String addMinutes(String time, int minutesToAdd) throws InvalidTwelveHourClockTimeFormatException;
 }
