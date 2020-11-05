@@ -13,6 +13,7 @@ public class SymmetricTree {
 //        int[] intArray = treeList.stream().mapToInt(i -> i).toArray();
         String[] strArray = treeList.toArray(new String[treeList.size()]);
 
+
         for (int i = 0, j = strArray.length - 1; i < strArray.length / 2; i++, j--) {
             if (!strArray[i].equals(strArray[j])) {
                 isSymmetric = false;
