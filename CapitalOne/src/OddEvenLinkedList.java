@@ -46,6 +46,7 @@ public class OddEvenLinkedList {
         OddEvenLinkedList test = new OddEvenLinkedList();
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
 //        test.prettyPrint(list1);
+        System.out.println("head is: " + list1.val);
         ListNode result = test.oddEvenList(list1);
         test.getSizeAndPrettyPrint(result);
 

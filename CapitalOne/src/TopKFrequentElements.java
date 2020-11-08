@@ -4,9 +4,6 @@ public class TopKFrequentElements {
     public int[] topKFrequent(int[] nums, int k) {
         int[] answer = new int[k];
         Map<Integer,Integer> map = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-
-        //Collections.max(map);
 
         for(int i=0; i<nums.length; i++) {
             if(!map.containsKey(nums[i])) {
