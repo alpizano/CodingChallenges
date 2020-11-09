@@ -80,10 +80,20 @@ public class CounterfeitCurrency {
         System.out.println("-----------------------");
 
 
-        String regex = "\\A(([A-Z])(?!\\2)([A-Z])(?!\\2|\\3)[A-Z])(19[0-9][0-9]|20[10][0-9])([0-9]{2,4})([A-Z])\\Z";
+        //String regex = "\\A(([A-Z])(?!\\2)([A-Z])(?!\\2|\\3)[A-Z])(19[0-9][0-9]|20[10][0-9])([0-9]{2,4})([A-Z])\\Z";
+        String regex = "\\A(([A-Z])(?!\\2)([A-Z])(?!\\2|\\3)[A-Z])(19[0-9][0-9]|20[10][0-9])(10|20|50|100|200|500|1000)([A-Z])\\Z";
+
         Pattern p = Pattern.compile(regex);
-//        "XYZ200019Z"
+
         List<String> inputs = new ArrayList<>(Arrays.asList("5","A201550B","ABB19991000Z","ERF200220","SCD203010T","ABC20191000Z"));
+
+        int answer = inputs.stream().map(input -> p.matcher(input))
+                .filter(m -> m.find())
+                .map(m -> m.group(5))
+                .mapToInt(s -> Integer.parseInt(s)).sum();
+
+        System.out.println("Answer is: " + answer);
+//        "XYZ200019Z"
 
 //        Pattern p = Pattern.compile("([A-Z])(?!\\2)([A-Z])(?!\\2|\\3)[A-Z](19[0-9][0-9]|20[10][0-9])([0-9]{2,4})([A-Z])"); // working
 //        Pattern p = Pattern.compile("^([A-Z])(?!\\1)([A-Z])(?!\\1|\\2)[A-Z](?:19[0-8][0-9]|199[0-9]|200[0-9]|201[0-9])([0-9]{2,4})([0-9])$");
