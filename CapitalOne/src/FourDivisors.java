@@ -3,33 +3,46 @@ import java.util.List;
 
 public class FourDivisors {
     public int sumFourDivisors(int[] nums) {
-        List<List<Integer>> numsList = new ArrayList<>();
+        List<Integer> numsList = new ArrayList<>();
+        int divisorSum = 0;
+        int divisorCount = 0;
 
         for(int i=0; i< nums.length; i++) {
             List<Integer> divisorsList = new ArrayList<>();
             int divisor =1;
 
-            while(divisor <= nums[i]) {
+            while(divisor <= Math.sqrt(nums[i])) {
 
                 if(nums[i] % divisor == 0) {
-                    divisorsList.add(divisor);
+                    divisorSum = divisorSum + divisor;
+                    System.out.println("divisor sum is: " + divisorSum);
+                    divisorCount++;
+                    if(nums[i] / divisor != divisor) {
+                        divisorSum = divisorSum + (nums[i]/divisor);
+                        divisorCount++;
+
+                    }
                 }
+                if(divisorCount > 4) {
+                    break;
+                }
+
                 divisor++;
             }
-            numsList.add(divisorsList);
-        }
-
-        int index = 0;
-        int sum = 0;
-        while(index < numsList.size()) {
-            if(numsList.get(index).size() == 4) {
-                for(int j=0; j< numsList.get(index).size(); j++) {
-                    sum = sum + numsList.get(index).get(j);
-                }
+            if(divisorCount == 4) {
+                numsList.add(divisorSum);
             }
-            index++;
+            divisorCount = 0;
+            divisorSum = 0;
         }
 
+        int sum = 0;
+
+        for(int i=0; i < numsList.size(); i++) {
+            sum = sum + numsList.get(i);
+        }
+
+        System.out.println(numsList);
         return sum;
     }
 
