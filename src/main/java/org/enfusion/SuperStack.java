@@ -1,4 +1,4 @@
-package src.src;
+package org.enfusion;
 
 import java.util.Scanner;
 import java.util.ArrayList;
