@@ -1,4 +1,4 @@
-package com.affinipay.exceptions;
+package org.affinipay.exceptions;
 
 public class InvalidTwelveHourClockTimeFormatException extends Exception{
     public InvalidTwelveHourClockTimeFormatException(String message) {
