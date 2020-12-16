@@ -14,7 +14,7 @@ public class MinStack {
     public void push(int x) {
         Node newNode = new Node(x);
 
-        if(stack.isEmpty() || x < stack.peek()) {
+        if(stack.isEmpty() || x <= stack.peek()) {
             stack.push(x);
         }
 
@@ -49,6 +49,12 @@ public class MinStack {
 
     public static void main(String[] args) {
         MinStack test = new MinStack();
+        test.push(0); // 0 min
+        test.push(1); // 0 min
+        test.push(0); //
+        System.out.println(test.getMin());
+        test.pop();
+        //System.out.println(test.getMin());
 
     }
 

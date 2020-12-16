@@ -17,9 +17,7 @@ public class CoinChange {
             }
         }
 
-        for(int i=0; i<dpArray.length; i++) {
-            System.out.print(dpArray[i] + " ");
-        }
+
 
         return dpArray[11] < 12 ? dpArray[11] : -1;
 

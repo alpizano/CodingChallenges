@@ -32,12 +32,13 @@ public class GreatestCommonDivisorOfStrings {
 
     public int findGcd(int a, int b) {
 
-        if(a == 0) {
-            return b;
+        if(b == 0) {
+            return a;
         }
 
+        return findGcd(b, b % a);
 
-        return abs(findGcd(b % a, a));
+        //return abs(findGcd(b % a, a));
     }
 
     public static void main(String[] args) {
