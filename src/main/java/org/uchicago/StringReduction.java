@@ -17,23 +17,17 @@ public class StringReduction {
         int i=0;
 
         while(i < sb.length()) {
-        //for (int i = 0; i < sb.length(); i++) {
-
             if(!set.contains(sb.charAt(i))) {
                 set.add(sb.charAt(i));
-
             }
            else{
-//               set.clear();
                 threshold++;
-
             }
+
             // we got 2 unique values
             if (set.size() == 2) {
                 Map<Character,String> temp = new HashMap<>(referenceMap);
                 temp.keySet().removeAll(set);
-                //System.out.println(temp);
-
 
                 while (i >= threshold) {
                     sb.deleteCharAt(i);
@@ -41,17 +35,14 @@ public class StringReduction {
                 }
 
                sb.insert(threshold,temp.keySet().toArray()[0]);
-                //threshold++;
                set.clear();
                 i = 0;
                 threshold = 0;
-                //break;
                 continue;
             }
 
                 i++;
         }
-       //System.out.println(sb.toString());
 
         return sb.length();
     }
