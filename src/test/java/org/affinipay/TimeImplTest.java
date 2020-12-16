@@ -1,4 +1,4 @@
-package com.affinipay;
+package org.affinipay;
 
 import com.affinipay.exceptions.InvalidTwelveHourClockTimeFormatException;
 import org.junit.BeforeClass;
